@@ -32,4 +32,4 @@ jobs:
       with:
         name: app-release
         path: FCL/build/outputs/apk/debug/*
-        retention-days: 1
+      #  retention-days: 1
