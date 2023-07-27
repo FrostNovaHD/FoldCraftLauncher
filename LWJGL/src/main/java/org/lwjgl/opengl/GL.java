@@ -326,10 +326,6 @@ public final class GL {
         return createCapabilities(false);
     }
 
-    private static native long getGraphicsBufferAddr();
-
-    private static native int[] getNativeWidthHeight();
-
     /**
      * Creates a new {@link GLCapabilities} instance for the OpenGL context that is current in the current thread.
      *
@@ -353,8 +349,8 @@ public final class GL {
 
         try {
             if (System.getProperty("org.lwjgl.opengl.libname", "").equals("libOSMesa_8.so")) {
-                int[] dims = getNativeWidthHeight();
-                callJPI(GLFW.glfwGetCurrentContext(), getGraphicsBufferAddr(), GL_UNSIGNED_BYTE, dims[0], dims[1], functionProvider.getFunctionAddress("OSMesaMakeCurrent"));
+                long window = GLFW.glfwGetCurrentContext();
+                callJPI(GLFW.glfwGetOSMesaCurrentContext(), GLFW.glfwGetGraphicBuffersAddr(window), GL_UNSIGNED_BYTE, GLFW.glfwGetOSMesaWidth(), GLFW.glfwGetOSMesaHeight(), functionProvider.getFunctionAddress("OSMesaMakeCurrent"));
             }
 
             // We don't have a current ContextCapabilities when this method is called

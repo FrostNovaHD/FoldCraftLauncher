@@ -10,9 +10,10 @@ public class FCLConfig implements Serializable {
 
     public enum Renderer implements Serializable {
         RENDERER_GL4ES("Holy-GL4ES:libgl4es_114.so:libEGL.so"),
-        RENDERER_ZINK("VirGLRenderer:libGL.so:libEGL.so"),
+        RENDERER_VIRGL("VirGLRenderer:libOSMesa_8.so:libEGL.so"),
         RENDERER_ANGLE("ANGLE:libtinywrapper.so:libEGL_angle.so"),
-        RENDERER_VGPU("VGPU:libvgpu.so:libEGL.so");
+        RENDERER_VGPU("VGPU:libvgpu.so:libEGL.so"),
+        RENDERER_ZINK("Zink:libOSMesa_8.so:libEGL.so");
 
         private final String glInfo;
         private String glVersion;
@@ -54,16 +55,14 @@ public class FCLConfig implements Serializable {
     private final String workingDir;
     private final Renderer renderer;
     private final String[] args;
-    private final boolean isLwjgl3;
 
-    public FCLConfig(Context context, String logDir, String javaPath, String workingDir, Renderer renderer, String[] args, boolean isLwjgl3) {
+    public FCLConfig(Context context, String logDir, String javaPath, String workingDir, Renderer renderer, String[] args) {
         this.context = context;
         this.logDir = logDir;
         this.javaPath = javaPath;
         this.workingDir = workingDir;
         this.renderer = renderer;
         this.args = args;
-        this.isLwjgl3 = isLwjgl3;
     }
 
     public Context getContext() {
@@ -90,7 +89,4 @@ public class FCLConfig implements Serializable {
         return args;
     }
 
-    public boolean isLwjgl3() {
-        return isLwjgl3;
-    }
 }
