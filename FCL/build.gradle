@@ -16,6 +16,15 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+	    }
+	    signingConfigs {
+        release {
+            storeFile file("key-store.jks")
+            storePassword "666666"
+            keyAlias "HMCL-PE-Key"
+            keyPassword "666666"
+        }
+    }
 
     buildTypes {
         release {
@@ -31,15 +40,6 @@ android {
         variant.outputs.configureEach { output ->
             outputFileName = "FCL-${variant.buildType.name}-${defaultConfig.versionName}.apk"
         }
-    }
-	    signingConfigs {
-        release {
-            storeFile file("key-store.jks")
-            storePassword "666666"
-            keyAlias "HMCL-PE-Key"
-            keyPassword "666666"
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
