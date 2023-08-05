@@ -22,10 +22,10 @@ jobs:
       with:
         java-version: 17
 
-    - name: Build release .apk
+    - name: Build debug .apk
       run: |
         chmod +x gradlew
-        ./gradlew assembleRelease
+        ./gradlew assembleDebug
         
     - name : upload apk
       uses: actions/upload-artifact@v3
