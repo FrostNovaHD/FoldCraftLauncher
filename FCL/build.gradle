@@ -42,12 +42,6 @@ android {
     }
 }
 
-tasks.whenTaskAdded { Task task ->
-    if (task.name.contentEquals("assembleRelease")) {
-        task.dependsOn(uploadMap)
-    }
-}
-
 tasks.register('updateMap') {
     doLast {
         def list = []
@@ -69,17 +63,6 @@ tasks.register('updateMap') {
         new File("${rootDir}/version_map.json").withWriter("UTF-8") { writer ->
             list.each {
                 writer.write(it)
-            }
-        }
-    }
-}
-
-task uploadMap(dependsOn:'updateMap') {
-    doLast {
-        ssh.run {
-            session(remotes.debugServer) {
-                File file = file "${rootDir}/version_map.json"
-                put from: file.getAbsolutePath(), into: "/www/wwwroot/FCLApi/public/files"
             }
         }
     }
