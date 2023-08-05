@@ -16,7 +16,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-  }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,6 +30,7 @@ android {
         variant.outputs.configureEach { output ->
             outputFileName = "FCL-${variant.buildType.name}-${defaultConfig.versionName}.apk"
         }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
