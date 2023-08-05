@@ -19,6 +19,7 @@ android {
 
     buildTypes {
         release {
+		    signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -29,6 +30,14 @@ android {
     applicationVariants.configureEach { variant ->
         variant.outputs.configureEach { output ->
             outputFileName = "FCL-${variant.buildType.name}-${defaultConfig.versionName}.apk"
+        }
+    }
+	    signingConfigs {
+        release {
+            storeFile file("key-store.jks")
+            storePassword "666666"
+            keyAlias "HMCL-PE-Key"
+            keyPassword "666666"
         }
     }
     compileOptions {
