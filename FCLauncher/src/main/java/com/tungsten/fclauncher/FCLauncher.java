@@ -75,7 +75,7 @@ public class FCLauncher {
 
     private static String getLibraryPath(Context context, String javaPath) throws IOException {
         String nativeDir = context.getApplicationInfo().nativeLibraryDir;
-        String libDirName = is64BitsDevice() ? "lib64" : "lib";
+        String libDirName = is64BitsDevice() ? "lib64" : "lib"; 
         String jreLibDir = getJreLibDir(javaPath);
         String jvmLibDir = getJvmLibDir(javaPath);
         String jliLibDir = "/jli";
@@ -140,11 +140,8 @@ public class FCLauncher {
             envMap.put("LIBGL_NOINTOVLHACK", "1");
         } else if (renderer == FCLConfig.Renderer.RENDERER_ANGLE) {
             envMap.put("LIBGL_ES","3");
-            envMap.put("LIBGL_MIPMAP", "3");
-            envMap.put("LIBGL_NORMALIZE", "1");
-            envMap.put("LIBGL_VSYNC", "1");
-            envMap.put("LIBGL_NOINTOVLHACK", "1");
         } else {
+			envMap.put("LIBGL_ES","3");
             envMap.put("MESA_GLSL_CACHE_DIR", config.getContext().getCacheDir().getAbsolutePath());
             envMap.put("MESA_GL_VERSION_OVERRIDE", renderer == FCLConfig.Renderer.RENDERER_VIRGL ? "4.3" : "4.6");
             envMap.put("MESA_GLSL_VERSION_OVERRIDE", renderer == FCLConfig.Renderer.RENDERER_VIRGL ? "430" : "460");
@@ -153,14 +150,8 @@ public class FCLauncher {
             envMap.put("allow_glsl_extension_directive_midshader", "true");
             envMap.put("MESA_LOADER_DRIVER_OVERRIDE", "zink");
             envMap.put("VTEST_SOCKET_NAME", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
-            envMap.put("REGAL_GL_VENDOR", "Android");
-            envMap.put("REGAL_GL_RENDERER", "Regal");
-            envMap.put("REGAL_GL_VERSION", "4.5");
-            if (renderer == FCLConfig.Renderer.RENDERER_VIRGL) {
-                envMap.put("GALLIUM_DRIVER", "virpipe");
-                envMap.put("OSMESA_NO_FLUSH_FRONTBUFFER", "1");
-            } else {
-                envMap.put("GALLIUM_DRIVER", "zink");
+		} else if (renderer == FCLConfig.Renderer.RENDERER_ZINK) {
+            envMap.put("GALLIUM_DRIVER", "zink");
             }
         }
     }
