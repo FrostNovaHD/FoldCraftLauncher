@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id "org.hidetake.ssh" version "2.11.2"
 }
 
 android {
@@ -10,8 +11,8 @@ android {
         applicationId "com.tungsten.fcl"
         minSdk 26
         targetSdk 33
-        versionCode 9
-        versionName "1.0.6"
+        versionCode 11
+        versionName "1.0.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,7 +44,7 @@ android {
 
 tasks.whenTaskAdded { Task task ->
     if (task.name.contentEquals("assembleRelease")) {
-        task.dependsOn(updateMap)
+        task.dependsOn(uploadMap)
     }
 }
 
@@ -73,6 +74,17 @@ tasks.register('updateMap') {
     }
 }
 
+task uploadMap(dependsOn:'updateMap') {
+    doLast {
+        ssh.run {
+            session(remotes.debugServer) {
+                File file = file "${rootDir}/version_map.json"
+                put from: file.getAbsolutePath(), into: "/www/wwwroot/FCLApi/public/files"
+            }
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':FCLCore')
@@ -90,3 +102,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+ssh.settings {
+    knownHosts = allowAnyHosts
+}
+

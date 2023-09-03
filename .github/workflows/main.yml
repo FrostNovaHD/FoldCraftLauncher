@@ -22,7 +22,7 @@ jobs:
       with:
         java-version: 17
 
-    - name: Build debug .apk
+    - name: Build Apk
       run: |
         chmod +x gradlew
         ./gradlew assembleDebug
@@ -32,4 +32,3 @@ jobs:
       with:
         name: app-release
         path: FCL/build/outputs/apk/debug/*
-      #  retention-days: 1

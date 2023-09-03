@@ -989,6 +989,7 @@ extern "C" {
  *  [attribute](@ref GLFW_CONTEXT_CREATION_API_attrib).
  */
 #define GLFW_CONTEXT_CREATION_API   0x0002200B
+#define GLFW_CONTEXT_CREATION_API_1   0x0002200D
 /*! @brief Window content area scaling window
  *  [window hint](@ref GLFW_SCALE_TO_MONITOR).
  */
@@ -1044,6 +1045,7 @@ extern "C" {
 #define GLFW_NATIVE_CONTEXT_API     0x00036001
 #define GLFW_EGL_CONTEXT_API        0x00036002
 #define GLFW_OSMESA_CONTEXT_API     0x00036003
+#define GLFW_OSMESA_CONTEXT_API_1     0x00036007
 
 /*! @defgroup shapes Standard cursor shapes
  *  @brief Standard system cursor shapes.
@@ -1068,6 +1070,7 @@ extern "C" {
  *  The crosshair shape.
  */
 #define GLFW_CROSSHAIR_CURSOR       0x00036003
+#define GLFW_CROSSHAIR_CURSOR_1       0x00036007
 /*! @brief The hand shape.
  *
  *  The hand shape.
