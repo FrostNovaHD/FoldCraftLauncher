@@ -151,16 +151,18 @@ public class FCLauncher {
             envMap.put("allow_higher_compat_version", "true");
             envMap.put("allow_glsl_extension_directive_midshader", "true");
             envMap.put("MESA_LOADER_DRIVER_OVERRIDE", "zink");
-			envMap.put("ZINK_DESCRIPTORS", "db");
+	    envMap.put("ZINK_DESCRIPTORS", "lazy");
 			
             envMap.put("VTEST_SOCKET_NAME", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
         if (renderer == FCLConfig.Renderer.RENDERER_VIRGL) {
             envMap.put("GALLIUM_DRIVER", "virpipe");
+	    envMap.put("LIBGL_ES","3")
             envMap.put("OSMESA_NO_FLUSH_FRONTBUFFER", "1");
        } else if (renderer == FCLConfig.Renderer.RENDERER_ZINK) {
             envMap.put("GALLIUM_DRIVER", "zink");
 	    envMap.put("MESA_LOADER_DRIVER_OVERRIDE", "zink");
-		    envMap.put("ZINK_DESCRIPTORS", "db");
+            envMap.put("ZINK_DESCRIPTORS", "lazy");
+	    envMap.put("OSMESA_NO_FLUSH_FRONTBUFFER", "1");
 
 
             }
