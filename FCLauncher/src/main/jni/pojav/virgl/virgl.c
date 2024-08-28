@@ -89,7 +89,7 @@ void *egl_make_current(void *window) {
 
     printf("VirGL: vtest_main = %p\n", vtest_main_p);
     printf("VirGL: Calling VTest server's main function\n");
-    vtest_main_p(3, (const char *[]) {"vtest", "--no-loop-or-fork", "--use-gles", NULL, NULL});
+    vtest_main_p(3, (const char *[]) {"vtest", NULL, NULL});
 }
 
 void virglSwapInterval(int interval) {
