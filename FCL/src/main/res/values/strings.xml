@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Fold Craft Launcher</string>
 
-    <string name="oauth_api_key" translatable="false">null</string>
-
     <string name="splash_permission_msg">No storage permission, please grant Fold Craft Launcher the permission.</string>
     <string name="splash_permission_grant">Grant</string>
     <string name="splash_permission_title">Permission to store needed</string>
@@ -22,6 +20,7 @@
     <string name="splash_runtime_java11" translatable="false">JRE 11</string>
     <string name="splash_runtime_java17" translatable="false">JRE 17</string>
     <string name="splash_runtime_java21" translatable="false">JRE 21</string>
+    <string name="splash_runtime_jna" translatable="false">JNA</string>
     <string name="splash_runtime_install">Install / Update</string>
 
     <string name="account">Account</string>
@@ -797,6 +796,7 @@
     <string name="settings_launcher_theme">Theme</string>
     <string name="settings_launcher_background_lt">Light Mode Launcher Background</string>
     <string name="settings_launcher_background_dk">Dark Mode Launcher Background</string>
+    <string name="settings_launcher_cursor">Cursor Picture</string>
     <string name="settings_launcher_ignore_notch">Ignore Notch</string>
     <string name="settings_launcher_animation_speed">Animation Speed</string>
 
